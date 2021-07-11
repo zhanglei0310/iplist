@@ -13,12 +13,12 @@
   "dependencies": {
     "@ipdb/range": "^0.1.1",
     "cidr-tools": "^3.0.5",
-    "glob": "^7.1.6",
+    "glob": "^7.1.7",
     "gulp": "^4.0.2",
     "gulp-debug": "^4.0.0",
     "ipdb": "^0.3.3",
     "progress": "^2.0.3",
-    "qqwry.raw.ipdb": "^2021.5.6",
+    "qqwry.raw.ipdb": "^2021.7.7",
     "yaml": "^1.10.2"
   }
 }
