@@ -1,28 +1,15 @@
 const vinyl = require('vinyl')
 const IPDB = require('ipdb')
+const ipdb_iso3166 = require('@ipdb/iso3166')
 const ipdb_range = require('@ipdb/range')
 const ProgressBar = require('progress')
-const Format = require('../format')
-
-let format = null
-
-const getCountryISO3166 = (info) => {
-  const data = format.execute([info.country, info.area].join('|'))
-  return data.iso3166_1
-}
 
 const plugin = (through2, file, cb) => {
 
   console.log('Parse ipdb')
 
-  format = new Format({
-    cwd: 'alias/country',
-    filenameDict: ['country_name', 'region_name', 'city_name', 'district_name'],
-    dic: 'qqwry'
-  })
-
   const ipdb = new IPDB(file.contents, {
-    patches: [ipdb_range]
+    patches: [ipdb_range, ipdb_iso3166]
   })
 
   let bar = new ProgressBar(':bar :current/:total', { total: ipdb.meta.node_count })
@@ -31,7 +18,7 @@ const plugin = (through2, file, cb) => {
   let ip = '0.0.0.0'
   while (true) {
     const info = ipdb.find(ip).data
-    const iso3166_1 = getCountryISO3166(info)
+    const iso3166_1 = info.country_code
     if (iso3166_1.length === 2) {
       if (!result[iso3166_1]) {
         result[iso3166_1] = []

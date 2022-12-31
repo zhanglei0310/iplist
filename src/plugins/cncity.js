@@ -1,28 +1,15 @@
 const vinyl = require('vinyl')
 const IPDB = require('ipdb')
 const ipdb_range = require('@ipdb/range')
+const ipdb_cac = require('@ipdb/cac')
 const ProgressBar = require('progress')
-const Format = require('../format')
-
-let format = null
-
-const getChinaAdminCode = (info) => {
-  const data = format.execute([info.country, info.area].join('|'))
-  return data.china_admin_code
-}
 
 const plugin = (through2, file, cb) => {
 
   console.log('Parse ipdb')
 
-  format = new Format({
-    cwd: 'alias/country',
-    filenameDict: ['country_name', 'region_name', 'city_name', 'district_name'],
-    dic: 'qqwry'
-  })
-
   const ipdb = new IPDB(file.contents, {
-    patches: [ipdb_range]
+    patches: [ipdb_range, ipdb_cac]
   })
 
   let bar = new ProgressBar(':bar :current/:total', { total: ipdb.meta.node_count })
@@ -31,7 +18,7 @@ const plugin = (through2, file, cb) => {
   let ip = '0.0.0.0'
   while (true) {
     const info = ipdb.find(ip).data
-    const china_admin_code = getChinaAdminCode(info)
+    const china_admin_code = info.china_admin_code
     if (china_admin_code.length === 6) {
       let cac = china_admin_code
       {

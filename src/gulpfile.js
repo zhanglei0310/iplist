@@ -6,7 +6,7 @@ const plugin_cncity = require('./plugins/cncity')
 const plugin_china = require('./plugins/china')
 const plugin_cidrmerge = require('./plugins/cidrmerge')
 
-const database = require('qqwry.raw.ipdb')
+const database = require('qqwry.ipdb')
 
 const country = () => {
   return src(database)
@@ -47,4 +47,4 @@ exports.country = country
 exports.city = city
 exports.cncity = cncity
 exports.china = china
-exports.build = series(country, city, cncity, china)
+exports.build = series(country, cncity, china)
