@@ -20,6 +20,10 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: data
+      - name: Checkout build
+        run: |
+          cd data
+          git checkout master
       - name: Parse
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -33,6 +37,11 @@ jobs:
           cp ../build/data/cncity/* ./data/cncity/
           cp ../build/data/country/* ./data/country/
           cp ../build/data/special/* ./data/special/
+
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes to the output on this push; exiting."
+            exit 0
+          fi
 
           git config --global user.name "github-actions[bot]"
           git config --global user.email "i@i-meto.com"
