@@ -16,6 +16,7 @@ jobs:
         run: |
           cd build
           git checkout build
+          cd ..
       - name: Checkout Git
         uses: actions/checkout@v3
         with:
@@ -24,6 +25,7 @@ jobs:
         run: |
           cd data
           git checkout master
+          cd ..
       - name: Parse
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
