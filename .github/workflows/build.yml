@@ -12,20 +12,12 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: build
-      - name: Checkout build
-        run: |
-          cd build
-          git checkout build
-          cd ..
+          ref: build
       - name: Checkout Git
         uses: actions/checkout@v3
         with:
           path: data
-      - name: Checkout build
-        run: |
-          cd data
-          git checkout master
-          cd ..
+          ref: master
       - name: Parse
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
