@@ -4,30 +4,33 @@ on:
   push:
     branches: [ "build" ]
   workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * *"
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Git
+      - name: Checkout Builder
         uses: actions/checkout@v3
         with:
           path: build
           ref: build
-      - name: Checkout Git
+      - name: Checkout Data
         uses: actions/checkout@v3
         with:
           path: data
           ref: master
       - name: Parse
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd build
           yarn install
           yarn add qqwry.ipdb
           yarn build
-
-          cd ../data
+      - name: Push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd ./data
           cp ../build/data/cncity/* ./data/cncity/
           cp ../build/data/country/* ./data/country/
           cp ../build/data/special/* ./data/special/
