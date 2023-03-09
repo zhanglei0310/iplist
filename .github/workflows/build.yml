@@ -43,5 +43,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "i@i-meto.com"
           git add .
-          git commit -m "Update data"
+          git commit -m "[auto] $(date '+%Y-%m-%d %H:%M:%S')"
           git push
