@@ -1786,15 +1786,10 @@ pumpify@^1.3.5:
     inherits "^2.0.3"
     pump "^2.0.0"
 
-qqwry.ipdb@^2022.12.28:
-  version "2022.12.28"
-  resolved "https://registry.yarnpkg.com/qqwry.ipdb/-/qqwry.ipdb-2022.12.28.tgz#42e9a60254f8ca381239ba7524042311551f6842"
-  integrity sha512-iaTOCbrDOcUIDv+6KQwsoKU+wO1A/Pp+dtfNwDgsRVnTSBwBctYoYAZ5HKl5OzVoS8UsJqjLvKlZKf/zoiRfxg==
-
-qqwry.raw.ipdb@^2021.7.7:
-  version "2021.7.7"
-  resolved "https://registry.yarnpkg.com/qqwry.raw.ipdb/-/qqwry.raw.ipdb-2021.7.7.tgz#9b5ab3ed1a382c4f157b6d1b9d09219f21065cde"
-  integrity sha512-dNdxIE8C8ZMeHPzL29aE1G2MRj4GomQI0/knR7lkUFmaXrf9i/SQIuCcoxfCbX0TSHoe40FCKFN9qcan533m3A==
+qqwry.ipdb@^2023.3.8:
+  version "2023.3.8"
+  resolved "https://registry.yarnpkg.com/qqwry.ipdb/-/qqwry.ipdb-2023.3.8.tgz#747034019d2cabb20e6915b8306e1004b64a3c8e"
+  integrity sha512-p5NyCqMf7DoxQt7ZIO5RauchS66H4P81LCaBtbwCaOjg1lQzNV+Ty1lp0cniAFCZKhlNZOJOuqUWrDfQdhN8Og==
 
 read-pkg-up@^1.0.1:
   version "1.0.1"

@@ -1,0 +1,41 @@
+name: Release
+
+on:
+  push:
+    branches: [ "build" ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Git
+        uses: actions/checkout@v3
+        with:
+          path: build
+      - name: Checkout build
+        run: |
+          cd build
+          git checkout build
+      - name: Checkout Git
+        uses: actions/checkout@v3
+        with:
+          path: data
+      - name: Parse
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd build
+          yarn install
+          yarn add qqwry.ipdb
+          yarn build
+
+          cd ../data
+          cp ../build/data/cncity/* ./data/cncity/
+          cp ../build/data/country/* ./data/country/
+          cp ../build/data/special/* ./data/special/
+
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "i@i-meto.com"
+          git add .
+          git commit -m "Update data"
+          git push
