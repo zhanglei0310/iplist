@@ -39,7 +39,7 @@ jobs:
           fi
 
           git config --global user.name "github-actions[bot]"
-          git config --global user.email "i@i-meto.com"
+          git config --global user.email "zhanglei0310@gmail.com"
           git add .
           git commit -m "[auto] $(date '+%Y-%m-%d %H:%M:%S')"
           git push
